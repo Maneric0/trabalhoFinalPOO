@@ -33,8 +33,7 @@ java {
 }
 
 application {
-    // Define the main class for the application.
-    mainClass = 'com.example.trabalhoFInalPOO.App'
+    mainClass = 'model.Main'
 }
 
 tasks.named('test') {
