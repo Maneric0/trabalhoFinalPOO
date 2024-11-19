@@ -1,0 +1,9 @@
+model\Main.class
+model\Lancamento.class
+model\Receita.class
+model\CategoriaDespesa.class
+model\GerenciadorDados.class
+model\CategoriaReceita.class
+model\Calculavel.class
+model\ComparadorPorData.class
+model\Despesa.class
