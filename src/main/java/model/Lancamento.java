@@ -14,6 +14,7 @@ public class Lancamento implements Calculavel {
     
     private double valor;
     private LocalDate data;
+    private double saldo;
     
     public Lancamento(double valor, LocalDate data){
         setValor(valor);
@@ -21,7 +22,7 @@ public class Lancamento implements Calculavel {
     }
     
     public double calcularSaldo() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     /**
@@ -50,6 +51,14 @@ public class Lancamento implements Calculavel {
      */
     public void setData(LocalDate data) {
         this.data = data;
+    }
+    
+    public double getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
     }
     
 }

@@ -20,7 +20,7 @@ public class Despesa extends Lancamento {
 
     @Override
     public double calcularSaldo() {
-        return -this.getValor(); // Receita adiciona ao saldo
+        return -this.getValor();
     }   
 
     /**
