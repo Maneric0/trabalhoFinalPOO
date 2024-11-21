@@ -21,8 +21,8 @@ public class Main {
         //gerenciador.inserirLancamento(new Receita(1000, LocalDate.of(2024, 1, 10), CategoriaReceita.SALARIO));
         //gerenciador.inserirLancamento(new Despesa(200, LocalDate.of(2024, 2, 15), CategoriaDespesa.ALIMENTACAO));
         //gerenciador.inserirLancamento(new Despesa(150, LocalDate.of(2024, 3, 02), CategoriaDespesa.ENTRETENIMENTO));
-        gerenciador.inserirLancamento(new Receita(100, LocalDate.of(2024, 4, 15), CategoriaReceita.DECIMO_TERCEIRO));
-        gerenciador.inserirLancamento(new Receita(100, LocalDate.of(2024, 5, 15), CategoriaReceita.FERIAS));
+//        gerenciador.inserirLancamento(new Receita(100, LocalDate.of(2024, 4, 15), CategoriaReceita.DECIMO_TERCEIRO));
+//        gerenciador.inserirLancamento(new Receita(100, LocalDate.of(2024, 5, 15), CategoriaReceita.FERIAS));
         
         gerenciador.ordenarLancamentosPorData();
         

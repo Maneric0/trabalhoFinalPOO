@@ -105,13 +105,13 @@ public class GerenciadorDados {
 
                 if (tipo.equalsIgnoreCase("Receita")) {
                     CategoriaReceita categoria = CategoriaReceita.valueOf(categoriaStr);
-                    Receita receita = new Receita(valor, data, categoria);
+                    Receita receita = new Receita(valor, data, saldoLido, categoria);
                     setSaldo(getSaldo() + valor);
                     receita.setSaldo(getSaldo());
                     getLancamentos().add(receita);
                 } else if (tipo.equalsIgnoreCase("Despesa")) {
                     CategoriaDespesa categoria = CategoriaDespesa.valueOf(categoriaStr);
-                    Despesa despesa = new Despesa(valor, data, categoria);
+                    Despesa despesa = new Despesa(valor, data, saldoLido, categoria);
                     setSaldo(getSaldo() - valor);
                     despesa.setSaldo(getSaldo());
                     getLancamentos().add(despesa);
