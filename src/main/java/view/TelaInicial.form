@@ -33,9 +33,15 @@
                   </Group>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="jBtnIncluirDespesa" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="jBtnIncluirDespesa" max="32767" attributes="0"/>
+                              <Component id="jBtnListarDespesas" max="32767" attributes="0"/>
+                          </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jBtnIncluirReceita" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jBtnIncluirReceita" max="32767" attributes="0"/>
+                              <Component id="jBtnListarReceitas" max="32767" attributes="0"/>
+                          </Group>
                           <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                           <Component id="jBtnListarLancamentos" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -68,11 +74,16 @@
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jTfSaldo" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="28" max="32767" attributes="0"/>
+              <EmptySpace pref="35" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jBtnIncluirDespesa" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jBtnIncluirReceita" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jBtnListarLancamentos" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jBtnListarDespesas" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jBtnListarReceitas" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
           </Group>
@@ -104,6 +115,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Incluir Receita"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnIncluirReceitaActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jBtnListarLancamentos">
       <Properties>
@@ -119,6 +133,19 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTfSaldoActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jBtnListarDespesas">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Listar Despesas"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnListarDespesasActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jBtnListarReceitas">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Listar Receitas"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

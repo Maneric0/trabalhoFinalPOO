@@ -35,6 +35,8 @@ public class TelaInicial extends javax.swing.JFrame {
         jBtnListarLancamentos = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jTfSaldo = new javax.swing.JTextField();
+        jBtnListarDespesas = new javax.swing.JButton();
+        jBtnListarReceitas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,6 +52,11 @@ public class TelaInicial extends javax.swing.JFrame {
         });
 
         jBtnIncluirReceita.setText("Incluir Receita");
+        jBtnIncluirReceita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnIncluirReceitaActionPerformed(evt);
+            }
+        });
 
         jBtnListarLancamentos.setText("Listar Lançamentos");
 
@@ -60,6 +67,15 @@ public class TelaInicial extends javax.swing.JFrame {
                 jTfSaldoActionPerformed(evt);
             }
         });
+
+        jBtnListarDespesas.setText("Listar Despesas");
+        jBtnListarDespesas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnListarDespesasActionPerformed(evt);
+            }
+        });
+
+        jBtnListarReceitas.setText("Listar Receitas");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -74,9 +90,13 @@ public class TelaInicial extends javax.swing.JFrame {
                         .addComponent(jTfSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(jBtnIncluirDespesa)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jBtnIncluirDespesa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jBtnListarDespesas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGap(18, 18, 18)
-                            .addComponent(jBtnIncluirReceita)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jBtnIncluirReceita, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jBtnListarReceitas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGap(47, 47, 47)
                             .addComponent(jBtnListarLancamentos))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -100,11 +120,15 @@ public class TelaInicial extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jTfSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtnIncluirDespesa)
-                    .addComponent(jBtnIncluirReceita)
-                    .addComponent(jBtnListarLancamentos))
+                    .addComponent(jBtnIncluirReceita))
+                .addGap(7, 7, 7)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBtnListarLancamentos)
+                    .addComponent(jBtnListarDespesas)
+                    .addComponent(jBtnListarReceitas))
                 .addGap(19, 19, 19))
         );
 
@@ -120,9 +144,29 @@ public class TelaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_jBtnIncluirDespesaActionPerformed
 
     private void jTfSaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTfSaldoActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jTfSaldoActionPerformed
 
+    private void jBtnIncluirReceitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirReceitaActionPerformed
+        this.caminho = jTfCaminho.getText();
+        this.saldo = Double.parseDouble(jTfSaldo.getText());
+        
+        IncluirReceitaUI telaIncluirReceita = new IncluirReceitaUI(this, true);
+        telaIncluirReceita.setVisible(true);
+    }//GEN-LAST:event_jBtnIncluirReceitaActionPerformed
+
+    private void jBtnListarDespesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnListarDespesasActionPerformed
+        this.caminho = jTfCaminho.getText();
+        this.saldo = Double.parseDouble(jTfSaldo.getText());
+        
+        ListarDespesasUI telaListarDepesas = new ListarDespesasUI(this, true);
+        telaListarDepesas.setVisible(true);
+    }//GEN-LAST:event_jBtnListarDespesasActionPerformed
+
+    public void setSaldo(double saldo) {
+        this.jTfSaldo.setText(String.valueOf(saldo));
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -161,7 +205,9 @@ public class TelaInicial extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnIncluirDespesa;
     private javax.swing.JButton jBtnIncluirReceita;
+    private javax.swing.JButton jBtnListarDespesas;
     private javax.swing.JButton jBtnListarLancamentos;
+    private javax.swing.JButton jBtnListarReceitas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -4,26 +4,26 @@
  */
 package view;
 
-import com.toedter.calendar.JDateChooser;
 import java.io.File;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import model.CategoriaDespesa;
+import model.CategoriaReceita;
 import model.Despesa;
 import model.GerenciadorDados;
 import model.Lancamento;
+import model.Receita;
 
 /**
  *
  * @author João Pedro
  */
-public class IncluirDespesaUI extends javax.swing.JDialog {
+public class IncluirReceitaUI extends javax.swing.JDialog {
 
     /**
-     * Creates new form IncluirDespesaUI
+     * Creates new form IncluirReceitaUI
      */
-    public IncluirDespesaUI(java.awt.Frame parent, boolean modal) {
+    public IncluirReceitaUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -49,7 +49,7 @@ public class IncluirDespesaUI extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("Incluir Despesas");
+        jLabel1.setText("Incluir Receitas");
 
         jLabel2.setText("Valor:");
 
@@ -57,7 +57,7 @@ public class IncluirDespesaUI extends javax.swing.JDialog {
 
         jLabel4.setText("Categoria:");
 
-        jCbCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alimentação", "Transporte", "Residência", "Saúde", "Entretenimento", "Outros" }));
+        jCbCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Salário", "Décimo Terceiro", "Férias", "Outros" }));
         jCbCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCbCategoriaActionPerformed(evt);
@@ -102,7 +102,7 @@ public class IncluirDespesaUI extends javax.swing.JDialog {
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTfData, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,7 +121,7 @@ public class IncluirDespesaUI extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(jCbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtnCancelar)
                     .addComponent(jButton1))
@@ -132,7 +132,7 @@ public class IncluirDespesaUI extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jCbCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbCategoriaActionPerformed
-        
+
     }//GEN-LAST:event_jCbCategoriaActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
@@ -144,22 +144,19 @@ public class IncluirDespesaUI extends javax.swing.JDialog {
         double valor = Double.parseDouble(jTfValor.getText());
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate data = LocalDate.parse(jTfData.getText(), formatter);
-        CategoriaDespesa categoria;
+        CategoriaReceita categoria;
         
-        if (jCbCategoria.getSelectedItem().equals("Alimentação")) {
-            categoria = CategoriaDespesa.ALIMENTACAO;
+        if (jCbCategoria.getSelectedItem().equals("Salário")) {
+            categoria = CategoriaReceita.SALARIO;
         }
-        else if (jCbCategoria.getSelectedItem().equals("Transporte")) {
-            categoria = CategoriaDespesa.TRANSPORTE;
+        else if (jCbCategoria.getSelectedItem().equals("Décimo Terceiro")) {
+            categoria = CategoriaReceita.DECIMO_TERCEIRO;
         }
-        else if (jCbCategoria.getSelectedItem().equals("Residência")) {
-            categoria = CategoriaDespesa.RESIDENCIA;
-        }
-        else if (jCbCategoria.getSelectedItem().equals("Saúde")) {
-            categoria = CategoriaDespesa.SAUDE;
+        else if (jCbCategoria.getSelectedItem().equals("Férias")) {
+            categoria = CategoriaReceita.FERIAS;
         }
         else {
-            categoria = CategoriaDespesa.OUTROS;
+            categoria = CategoriaReceita.OUTROS;
         }
         
         File file = new File(TelaInicial.caminho);
@@ -167,7 +164,7 @@ public class IncluirDespesaUI extends javax.swing.JDialog {
         Lancamento lancamento = new Lancamento(valor,data,saldo);
         GerenciadorDados gerenciador = new GerenciadorDados(file);
         
-        gerenciador.inserirLancamento(new Despesa(valor, data, saldo, categoria));
+        gerenciador.inserirLancamento(new Receita(valor, data, saldo, categoria));
         setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -188,20 +185,20 @@ public class IncluirDespesaUI extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(IncluirDespesaUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IncluirReceitaUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(IncluirDespesaUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IncluirReceitaUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(IncluirDespesaUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IncluirReceitaUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(IncluirDespesaUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IncluirReceitaUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                IncluirDespesaUI dialog = new IncluirDespesaUI(new javax.swing.JFrame(), true);
+                IncluirReceitaUI dialog = new IncluirReceitaUI(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
