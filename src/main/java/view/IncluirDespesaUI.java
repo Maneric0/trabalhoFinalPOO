@@ -175,6 +175,7 @@ public class IncluirDespesaUI extends javax.swing.JDialog {
         GerenciadorDados gerenciador = new GerenciadorDados(file);
         
         gerenciador.inserirLancamento(new Despesa(valor, data, saldo, categoria));
+        setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
