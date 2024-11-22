@@ -46,6 +46,7 @@ public class IncluirReceitaUI extends javax.swing.JDialog {
         jCbCategoria = new javax.swing.JComboBox<>();
         jBtnCancelar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jLErro = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -78,6 +79,8 @@ public class IncluirReceitaUI extends javax.swing.JDialog {
             }
         });
 
+        jLErro.setForeground(new java.awt.Color(204, 0, 0));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -101,7 +104,8 @@ public class IncluirReceitaUI extends javax.swing.JDialog {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTfData, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTfData, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLErro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -121,7 +125,9 @@ public class IncluirReceitaUI extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(jCbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(jLErro)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtnCancelar)
                     .addComponent(jButton1))
@@ -140,31 +146,34 @@ public class IncluirReceitaUI extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        double valor = Double.parseDouble(jTfValor.getText());
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate data = LocalDate.parse(jTfData.getText(), formatter);
-        CategoriaReceita categoria;
-        
-        if (jCbCategoria.getSelectedItem().equals("Salário")) {
-            categoria = CategoriaReceita.SALARIO;
+        try {
+            double valor = Double.parseDouble(jTfValor.getText());
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate data = LocalDate.parse(jTfData.getText(), formatter);
+            CategoriaReceita categoria;
+
+            if (jCbCategoria.getSelectedItem().equals("Salário")) {
+                categoria = CategoriaReceita.SALARIO;
+            } else if (jCbCategoria.getSelectedItem().equals("Décimo Terceiro")) {
+                categoria = CategoriaReceita.DECIMO_TERCEIRO;
+            } else if (jCbCategoria.getSelectedItem().equals("Férias")) {
+                categoria = CategoriaReceita.FERIAS;
+            } else {
+                categoria = CategoriaReceita.OUTROS;
+            }
+
+            File file = new File(TelaInicial.caminho);
+            GerenciadorDados gerenciador = new GerenciadorDados(file);
+
+            gerenciador.inserirLancamento(new Receita(valor, data, categoria));
+            setVisible(false);
+        } catch (NullPointerException ex) {
+            jLErro.setText("Preencha todos os campos");
+        } catch (NumberFormatException ex) {
+            jLErro.setText("Digite um valor válido");
+        } catch (Exception ex) {
+            jLErro.setText("Preencha os campos corretamente");
         }
-        else if (jCbCategoria.getSelectedItem().equals("Décimo Terceiro")) {
-            categoria = CategoriaReceita.DECIMO_TERCEIRO;
-        }
-        else if (jCbCategoria.getSelectedItem().equals("Férias")) {
-            categoria = CategoriaReceita.FERIAS;
-        }
-        else {
-            categoria = CategoriaReceita.OUTROS;
-        }
-        
-        File file = new File(TelaInicial.caminho);
-        
-        Lancamento lancamento = new Lancamento(valor,data);
-        GerenciadorDados gerenciador = new GerenciadorDados(file);
-        
-        gerenciador.inserirLancamento(new Receita(valor, data, categoria));
-        setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -213,6 +222,7 @@ public class IncluirReceitaUI extends javax.swing.JDialog {
     private javax.swing.JButton jBtnCancelar;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jCbCategoria;
+    private javax.swing.JLabel jLErro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

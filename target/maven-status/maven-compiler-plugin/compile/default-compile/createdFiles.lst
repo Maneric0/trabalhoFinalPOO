@@ -1,5 +1,7 @@
 view\ListarDespesasUI$3.class
+view\TelaInicial$8.class
 view\TelaInicial$3.class
+view\ListarLancamentos$1.class
 view\TelaInicial$1.class
 view\ListarDespesasUI$1.class
 view\ListarReceitasUI.class
@@ -9,10 +11,13 @@ model\CategoriaReceita.class
 view\ListarDespesasUI$3$1.class
 model\Despesa.class
 view\IncluirReceitaUI$4$1.class
+view\ListarLancamentos$3$1.class
 model\Main.class
 view\ListarReceitasUI$2.class
 view\ListarDespesasUI.class
 view\IncluirReceitaUI$3.class
+view\ListarLancamentos$3.class
+view\ListarLancamentos.class
 view\IncluirDespesaUI$2.class
 view\TelaInicial$6.class
 view\IncluirReceitaUI.class
@@ -36,4 +41,5 @@ view\TelaInicial$7.class
 model\ComparadorPorData.class
 view\IncluirReceitaUI$4.class
 view\ListarDespesasUI$2.class
+view\ListarLancamentos$2.class
 view\TelaInicial$2.class

@@ -74,6 +74,11 @@ public class TelaInicial extends javax.swing.JFrame {
         });
 
         jBtnListarLancamentos.setText("Listar Lançamentos");
+        jBtnListarLancamentos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnListarLancamentosActionPerformed(evt);
+            }
+        });
 
         jBtnListarDespesas.setText("Listar Despesas");
         jBtnListarDespesas.addActionListener(new java.awt.event.ActionListener() {
@@ -179,6 +184,11 @@ public class TelaInicial extends javax.swing.JFrame {
        ListarReceitasUI telaListarReceitas = new ListarReceitasUI(this, true);
        telaListarReceitas.setVisible(true);
     }//GEN-LAST:event_jBtnListarReceitasActionPerformed
+
+    private void jBtnListarLancamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnListarLancamentosActionPerformed
+        ListarLancamentos telaListarLancamentos = new ListarLancamentos(this, true);
+        telaListarLancamentos.setVisible(true);
+    }//GEN-LAST:event_jBtnListarLancamentosActionPerformed
 
     public void setCaminho() {
         FileFilter filtro = new FileNameExtensionFilter("CSV", "csv");

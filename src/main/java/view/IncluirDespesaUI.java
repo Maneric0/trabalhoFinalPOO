@@ -46,6 +46,7 @@ public class IncluirDespesaUI extends javax.swing.JDialog {
         jCbCategoria = new javax.swing.JComboBox<>();
         jBtnCancelar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jLErro = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -78,30 +79,34 @@ public class IncluirDespesaUI extends javax.swing.JDialog {
             }
         });
 
+        jLErro.setForeground(new java.awt.Color(204, 0, 0));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTfValor))
-                    .addComponent(jLabel1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCbCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jBtnCancelar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTfData, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLErro)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jTfValor))
+                        .addComponent(jLabel1)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel4)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jCbCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jBtnCancelar)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jLabel3)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jTfData, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -121,7 +126,9 @@ public class IncluirDespesaUI extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(jCbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addComponent(jLErro)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtnCancelar)
                     .addComponent(jButton1))
@@ -140,34 +147,43 @@ public class IncluirDespesaUI extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        double valor = Double.parseDouble(jTfValor.getText());
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate data = LocalDate.parse(jTfData.getText(), formatter);
-        CategoriaDespesa categoria;
+        try {
+            double valor = Double.parseDouble(jTfValor.getText());
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate data = LocalDate.parse(jTfData.getText(), formatter);
+            CategoriaDespesa categoria;
+
+            if (jCbCategoria.getSelectedItem().equals("Alimentação")) {
+                categoria = CategoriaDespesa.ALIMENTACAO;
+            } else if (jCbCategoria.getSelectedItem().equals("Transporte")) {
+                categoria = CategoriaDespesa.TRANSPORTE;
+            } else if (jCbCategoria.getSelectedItem().equals("Residência")) {
+                categoria = CategoriaDespesa.RESIDENCIA;
+            } else if (jCbCategoria.getSelectedItem().equals("Saúde")) {
+                categoria = CategoriaDespesa.SAUDE;
+            } else if (jCbCategoria.getSelectedItem().equals("Entretenimento")) {
+                categoria = CategoriaDespesa.ENTRETENIMENTO;
+            }
+            else {
+                categoria = CategoriaDespesa.OUTROS;
+            }
+
+            File file = new File(TelaInicial.caminho);
+            GerenciadorDados gerenciador = new GerenciadorDados(file);
+
+            gerenciador.inserirLancamento(new Despesa(valor, data, categoria));
+            setVisible(false);
+        }
+        catch (NullPointerException ex) {
+            jLErro.setText("Preencha todos os campos");
+        }
+        catch (NumberFormatException ex) {
+            jLErro.setText("Digite um valor válido");
+        }
+        catch (Exception ex) {
+            jLErro.setText("Preencha os campos corretamente");
+        }
         
-        if (jCbCategoria.getSelectedItem().equals("Alimentação")) {
-            categoria = CategoriaDespesa.ALIMENTACAO;
-        }
-        else if (jCbCategoria.getSelectedItem().equals("Transporte")) {
-            categoria = CategoriaDespesa.TRANSPORTE;
-        }
-        else if (jCbCategoria.getSelectedItem().equals("Residência")) {
-            categoria = CategoriaDespesa.RESIDENCIA;
-        }
-        else if (jCbCategoria.getSelectedItem().equals("Saúde")) {
-            categoria = CategoriaDespesa.SAUDE;
-        }
-        else {
-            categoria = CategoriaDespesa.OUTROS;
-        }
-        
-        File file = new File(TelaInicial.caminho);
-        
-        Lancamento lancamento = new Lancamento(valor,data);
-        GerenciadorDados gerenciador = new GerenciadorDados(file);
-        
-        gerenciador.inserirLancamento(new Despesa(valor, data, categoria));
-        setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -216,6 +232,7 @@ public class IncluirDespesaUI extends javax.swing.JDialog {
     private javax.swing.JButton jBtnCancelar;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jCbCategoria;
+    private javax.swing.JLabel jLErro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -15,12 +15,12 @@ import model.Receita;
  *
  * @author João Pedro
  */
-public class ListarReceitasUI extends javax.swing.JDialog {
+public class ListarLancamentos extends javax.swing.JDialog {
 
     /**
-     * Creates new form ListarReceitasUI
+     * Creates new form ListarLancamentos
      */
-    public ListarReceitasUI(java.awt.Frame parent, boolean modal) {
+    public ListarLancamentos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         
@@ -51,7 +51,7 @@ public class ListarReceitasUI extends javax.swing.JDialog {
         jTaListagem.setRows(5);
         jScrollPane1.setViewportView(jTaListagem);
 
-        jLabel1.setText("Listar Despesas");
+        jLabel1.setText("Listar Lançamentos");
 
         jBtnConcluir.setText("Concluir");
         jBtnConcluir.addActionListener(new java.awt.event.ActionListener() {
@@ -74,7 +74,7 @@ public class ListarReceitasUI extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -90,12 +90,12 @@ public class ListarReceitasUI extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtnConcluir)
                     .addComponent(jBtnOrganizarPorData))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
 
         pack();
@@ -118,15 +118,13 @@ public class ListarReceitasUI extends javax.swing.JDialog {
 
     public void ListarDepesas(GerenciadorDados gerenciador, DateTimeFormatter formatter) {
         for (Lancamento lancamento : gerenciador.getLancamentos()) {
-            if (lancamento instanceof Despesa) {
-                continue;
-            }
+            String tipoLancamento = lancamento instanceof Receita ? "RECEITA" : "DESPESA";
                         
             String categoria = lancamento instanceof Receita
                     ? ((Receita) lancamento).getCategoria().toString()
                     : ((Despesa) lancamento).getCategoria().toString();
             
-            jTaListagem.append("Data: " + lancamento.getData().format(formatter) +
+            jTaListagem.append(tipoLancamento + " - Data: " + lancamento.getData().format(formatter) +
                     ": Valor: " + lancamento.getValor() +
                     " | " + categoria.toUpperCase()+
                     " | Saldo: " + lancamento.getSaldo() + "\n");
@@ -150,20 +148,20 @@ public class ListarReceitasUI extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ListarReceitasUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListarLancamentos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ListarReceitasUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListarLancamentos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ListarReceitasUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListarLancamentos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ListarReceitasUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListarLancamentos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ListarReceitasUI dialog = new ListarReceitasUI(new javax.swing.JFrame(), true);
+                ListarLancamentos dialog = new ListarLancamentos(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

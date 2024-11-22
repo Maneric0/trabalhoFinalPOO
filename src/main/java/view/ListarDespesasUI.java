@@ -6,6 +6,7 @@ package view;
 
 import java.io.File;
 import java.time.format.DateTimeFormatter;
+import model.Despesa;
 import model.GerenciadorDados;
 import model.Lancamento;
 import model.Receita;
@@ -120,9 +121,14 @@ public class ListarDespesasUI extends javax.swing.JDialog {
             if (lancamento instanceof Receita) {
                 continue;
             }
+                        
+            String categoria = lancamento instanceof Receita
+                    ? ((Receita) lancamento).getCategoria().toString()
+                    : ((Despesa) lancamento).getCategoria().toString();
             
-            jTaListagem.append("DESPESA - Data: " + lancamento.getData().format(formatter) +
+            jTaListagem.append("Data: " + lancamento.getData().format(formatter) +
                     ": Valor: " + lancamento.getValor() +
+                    " | " + categoria.toUpperCase()+
                     " | Saldo: " + lancamento.getSaldo() + "\n");
         }
     }
