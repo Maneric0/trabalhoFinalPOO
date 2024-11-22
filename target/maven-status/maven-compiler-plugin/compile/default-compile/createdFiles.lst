@@ -9,8 +9,8 @@ model\CategoriaReceita.class
 view\ListarDespesasUI$3$1.class
 model\Despesa.class
 view\IncluirReceitaUI$4$1.class
-view\ListarReceitasUI$1$1.class
 model\Main.class
+view\ListarReceitasUI$2.class
 view\ListarDespesasUI.class
 view\IncluirReceitaUI$3.class
 view\IncluirDespesaUI$2.class
@@ -29,7 +29,10 @@ view\IncluirDespesaUI$3.class
 view\ListarReceitasUI$1.class
 view\IncluirDespesaUI.class
 model\Receita.class
+view\ListarReceitasUI$3$1.class
+view\ListarReceitasUI$3.class
 model\Calculavel.class
+view\TelaInicial$7.class
 model\ComparadorPorData.class
 view\IncluirReceitaUI$4.class
 view\ListarDespesasUI$2.class

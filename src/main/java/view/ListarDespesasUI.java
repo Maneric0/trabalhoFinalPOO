@@ -73,7 +73,7 @@ public class ListarDespesasUI extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -121,7 +121,7 @@ public class ListarDespesasUI extends javax.swing.JDialog {
                 continue;
             }
             
-            jTaListagem.append("Data: " + lancamento.getData().format(formatter) +
+            jTaListagem.append("DESPESA - Data: " + lancamento.getData().format(formatter) +
                     ": Valor: " + lancamento.getValor() +
                     " | Saldo: " + lancamento.getSaldo() + "\n");
         }

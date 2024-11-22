@@ -4,6 +4,13 @@
  */
 package view;
 
+import java.io.File;
+import java.time.format.DateTimeFormatter;
+import model.Despesa;
+import model.GerenciadorDados;
+import model.Lancamento;
+import model.Receita;
+
 /**
  *
  * @author João Pedro
@@ -16,6 +23,11 @@ public class ListarReceitasUI extends javax.swing.JDialog {
     public ListarReceitasUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        GerenciadorDados gerenciador = new GerenciadorDados(new File(TelaInicial.caminho));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        
+        ListarDepesas(gerenciador, formatter);
     }
 
     /**
@@ -27,22 +39,95 @@ public class ListarReceitasUI extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTaListagem = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
+        jBtnConcluir = new javax.swing.JButton();
+        jBtnOrganizarPorData = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jTaListagem.setColumns(20);
+        jTaListagem.setRows(5);
+        jScrollPane1.setViewportView(jTaListagem);
+
+        jLabel1.setText("Listar Despesas");
+
+        jBtnConcluir.setText("Concluir");
+        jBtnConcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnConcluirActionPerformed(evt);
+            }
+        });
+
+        jBtnOrganizarPorData.setText("Ordenar por Data");
+        jBtnOrganizarPorData.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnOrganizarPorDataActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jBtnOrganizarPorData)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBtnConcluir)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBtnConcluir)
+                    .addComponent(jBtnOrganizarPorData))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jBtnConcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConcluirActionPerformed
+        setVisible(false);
+    }//GEN-LAST:event_jBtnConcluirActionPerformed
+
+    private void jBtnOrganizarPorDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOrganizarPorDataActionPerformed
+        jTaListagem.setText(null);
+
+        GerenciadorDados gerenciador = new GerenciadorDados(new File(TelaInicial.caminho));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        gerenciador.ordenarLancamentosPorData();
+
+        ListarDepesas(gerenciador, formatter);
+    }//GEN-LAST:event_jBtnOrganizarPorDataActionPerformed
+
+    public void ListarDepesas(GerenciadorDados gerenciador, DateTimeFormatter formatter) {
+        for (Lancamento lancamento : gerenciador.getLancamentos()) {
+            if (lancamento instanceof Despesa) {
+                continue;
+            }
+            
+            jTaListagem.append("RECEITA - Data: " + lancamento.getData().format(formatter) +
+                    ": Valor: " + lancamento.getValor() +
+                    " | Saldo: " + lancamento.getSaldo() + "\n");
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -86,5 +171,10 @@ public class ListarReceitasUI extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBtnConcluir;
+    private javax.swing.JButton jBtnOrganizarPorData;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTaListagem;
     // End of variables declaration//GEN-END:variables
 }

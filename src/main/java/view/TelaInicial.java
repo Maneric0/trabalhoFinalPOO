@@ -83,6 +83,11 @@ public class TelaInicial extends javax.swing.JFrame {
         });
 
         jBtnListarReceitas.setText("Listar Receitas");
+        jBtnListarReceitas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnListarReceitasActionPerformed(evt);
+            }
+        });
 
         jTfProcurar.setText("Procurar");
         jTfProcurar.addActionListener(new java.awt.event.ActionListener() {
@@ -169,6 +174,11 @@ public class TelaInicial extends javax.swing.JFrame {
     private void jTfProcurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTfProcurarActionPerformed
        setCaminho();
     }//GEN-LAST:event_jTfProcurarActionPerformed
+
+    private void jBtnListarReceitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnListarReceitasActionPerformed
+       ListarReceitasUI telaListarReceitas = new ListarReceitasUI(this, true);
+       telaListarReceitas.setVisible(true);
+    }//GEN-LAST:event_jBtnListarReceitasActionPerformed
 
     public void setCaminho() {
         FileFilter filtro = new FileNameExtensionFilter("CSV", "csv");
