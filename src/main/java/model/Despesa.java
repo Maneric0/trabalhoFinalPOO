@@ -13,8 +13,8 @@ import java.time.LocalDate;
 public class Despesa extends Lancamento {
     private CategoriaDespesa categoria;
     
-    public Despesa(double valor, LocalDate data, double saldo,CategoriaDespesa categoria) {
-        super(valor, data, saldo);
+    public Despesa(double valor, LocalDate data, CategoriaDespesa categoria) {
+        super(valor, data);
         setCategoria(categoria);
     }
 

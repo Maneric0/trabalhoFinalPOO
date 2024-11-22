@@ -4,18 +4,23 @@
  */
 package view;
 
+import java.io.File;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 /**
  *
  * @author João Pedro
  */
 public class TelaInicial extends javax.swing.JFrame {
     public static String caminho;
-    public static double saldo;
     /**
      * Creates new form TelaInicial
      */
     public TelaInicial() {
         initComponents();
+        
+        setCaminho();
     }
 
     /**
@@ -27,22 +32,32 @@ public class TelaInicial extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jFileChooser1 = new javax.swing.JFileChooser();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jTfCaminho = new javax.swing.JTextField();
         jBtnIncluirDespesa = new javax.swing.JButton();
         jBtnIncluirReceita = new javax.swing.JButton();
         jBtnListarLancamentos = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jTfSaldo = new javax.swing.JTextField();
         jBtnListarDespesas = new javax.swing.JButton();
         jBtnListarReceitas = new javax.swing.JButton();
+        jTfProcurar = new javax.swing.JButton();
+
+        jFileChooser1.setCurrentDirectory(new java.io.File("C:\\Users\\João Pedro\\Downloads"));
+        jFileChooser1.setDialogTitle("");
+        jFileChooser1.setFileHidingEnabled(false);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Sistema de Gerenciador de Despesas Pessoais");
 
         jLabel2.setText("Caminho da planilha (.csv):");
+
+        jTfCaminho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTfCaminhoActionPerformed(evt);
+            }
+        });
 
         jBtnIncluirDespesa.setText("Incluir Despesa");
         jBtnIncluirDespesa.addActionListener(new java.awt.event.ActionListener() {
@@ -60,14 +75,6 @@ public class TelaInicial extends javax.swing.JFrame {
 
         jBtnListarLancamentos.setText("Listar Lançamentos");
 
-        jLabel3.setText("Saldo total:");
-
-        jTfSaldo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTfSaldoActionPerformed(evt);
-            }
-        });
-
         jBtnListarDespesas.setText("Listar Despesas");
         jBtnListarDespesas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,35 +84,43 @@ public class TelaInicial extends javax.swing.JFrame {
 
         jBtnListarReceitas.setText("Listar Receitas");
 
+        jTfProcurar.setText("Procurar");
+        jTfProcurar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTfProcurarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTfSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jBtnIncluirDespesa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jBtnListarDespesas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jBtnIncluirReceita, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jBtnListarReceitas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGap(47, 47, 47)
-                            .addComponent(jBtnListarLancamentos))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(162, 162, 162))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTfCaminho, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(38, Short.MAX_VALUE))
+                                .addComponent(jTfCaminho, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTfProcurar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jBtnIncluirDespesa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jBtnListarDespesas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jBtnIncluirReceita, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jBtnListarReceitas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBtnListarLancamentos)))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,12 +130,9 @@ public class TelaInicial extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTfCaminho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTfSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                    .addComponent(jTfCaminho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTfProcurar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtnIncluirDespesa)
                     .addComponent(jBtnIncluirReceita))
@@ -136,35 +148,37 @@ public class TelaInicial extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnIncluirDespesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirDespesaActionPerformed
-        this.caminho = jTfCaminho.getText();
-        this.saldo = Double.parseDouble(jTfSaldo.getText());
-        
         IncluirDespesaUI telaIncluirDespesa = new IncluirDespesaUI(this, true);
         telaIncluirDespesa.setVisible(true);
     }//GEN-LAST:event_jBtnIncluirDespesaActionPerformed
 
-    private void jTfSaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTfSaldoActionPerformed
-        
-    }//GEN-LAST:event_jTfSaldoActionPerformed
-
     private void jBtnIncluirReceitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirReceitaActionPerformed
-        this.caminho = jTfCaminho.getText();
-        this.saldo = Double.parseDouble(jTfSaldo.getText());
-        
         IncluirReceitaUI telaIncluirReceita = new IncluirReceitaUI(this, true);
         telaIncluirReceita.setVisible(true);
     }//GEN-LAST:event_jBtnIncluirReceitaActionPerformed
 
     private void jBtnListarDespesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnListarDespesasActionPerformed
-        this.caminho = jTfCaminho.getText();
-        this.saldo = Double.parseDouble(jTfSaldo.getText());
-        
         ListarDespesasUI telaListarDepesas = new ListarDespesasUI(this, true);
         telaListarDepesas.setVisible(true);
     }//GEN-LAST:event_jBtnListarDespesasActionPerformed
 
-    public void setSaldo(double saldo) {
-        this.jTfSaldo.setText(String.valueOf(saldo));
+    private void jTfCaminhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTfCaminhoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTfCaminhoActionPerformed
+
+    private void jTfProcurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTfProcurarActionPerformed
+       setCaminho();
+    }//GEN-LAST:event_jTfProcurarActionPerformed
+
+    public void setCaminho() {
+        FileFilter filtro = new FileNameExtensionFilter("CSV", "csv");
+        jFileChooser1.setFileFilter(filtro);
+        jFileChooser1.showOpenDialog(null);
+        
+        File file = jFileChooser1.getSelectedFile();
+        caminho = file.getPath();
+        
+        jTfCaminho.setText(caminho);
     }
     
     /**
@@ -208,10 +222,10 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JButton jBtnListarDespesas;
     private javax.swing.JButton jBtnListarLancamentos;
     private javax.swing.JButton jBtnListarReceitas;
+    private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField jTfCaminho;
-    private javax.swing.JTextField jTfSaldo;
+    private javax.swing.JButton jTfProcurar;
     // End of variables declaration//GEN-END:variables
 }

@@ -140,7 +140,6 @@ public class IncluirDespesaUI extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        double saldo = TelaInicial.saldo;
         double valor = Double.parseDouble(jTfValor.getText());
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate data = LocalDate.parse(jTfData.getText(), formatter);
@@ -164,10 +163,10 @@ public class IncluirDespesaUI extends javax.swing.JDialog {
         
         File file = new File(TelaInicial.caminho);
         
-        Lancamento lancamento = new Lancamento(valor,data,saldo);
+        Lancamento lancamento = new Lancamento(valor,data);
         GerenciadorDados gerenciador = new GerenciadorDados(file);
         
-        gerenciador.inserirLancamento(new Despesa(valor, data, saldo, categoria));
+        gerenciador.inserirLancamento(new Despesa(valor, data, categoria));
         setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 

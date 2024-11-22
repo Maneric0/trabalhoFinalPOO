@@ -16,10 +16,9 @@ public class Lancamento implements Calculavel {
     private LocalDate data;
     private double saldo;
     
-    public Lancamento(double valor, LocalDate data, double saldo){
+    public Lancamento(double valor, LocalDate data){
         setValor(valor);
         setData(data);
-        setSaldo(saldo);
     }
     
     public double calcularSaldo() {
