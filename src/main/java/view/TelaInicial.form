@@ -54,7 +54,10 @@
                                   <Component id="jBtnListarReceitas" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jBtnListarLancamentos" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jBtnListarLancamentos" max="32767" attributes="0"/>
+                                  <Component id="jBtnCriarPlanilha" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
@@ -96,6 +99,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jBtnIncluirDespesa" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jBtnIncluirReceita" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jBtnCriarPlanilha" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -130,6 +134,7 @@
     <Component class="javax.swing.JButton" name="jBtnIncluirDespesa">
       <Properties>
         <Property name="text" type="java.lang.String" value="Incluir Despesa"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnIncluirDespesaActionPerformed"/>
@@ -138,6 +143,7 @@
     <Component class="javax.swing.JButton" name="jBtnIncluirReceita">
       <Properties>
         <Property name="text" type="java.lang.String" value="Incluir Receita"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnIncluirReceitaActionPerformed"/>
@@ -146,6 +152,7 @@
     <Component class="javax.swing.JButton" name="jBtnListarLancamentos">
       <Properties>
         <Property name="text" type="java.lang.String" value="Listar Lan&#xe7;amentos"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnListarLancamentosActionPerformed"/>
@@ -154,6 +161,7 @@
     <Component class="javax.swing.JButton" name="jBtnListarDespesas">
       <Properties>
         <Property name="text" type="java.lang.String" value="Listar Despesas"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnListarDespesasActionPerformed"/>
@@ -162,6 +170,7 @@
     <Component class="javax.swing.JButton" name="jBtnListarReceitas">
       <Properties>
         <Property name="text" type="java.lang.String" value="Listar Receitas"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnListarReceitasActionPerformed"/>
@@ -181,6 +190,14 @@
           <Color blue="0" green="0" red="cc" type="rgb"/>
         </Property>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jBtnCriarPlanilha">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Criar Planilha"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnCriarPlanilhaActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

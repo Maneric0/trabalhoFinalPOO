@@ -24,18 +24,20 @@ public class Main {
 //        gerenciador.inserirLancamento(new Receita(100, LocalDate.of(2024, 4, 15), CategoriaReceita.DECIMO_TERCEIRO));
 //        gerenciador.inserirLancamento(new Receita(100, LocalDate.of(2024, 5, 15), CategoriaReceita.FERIAS));
         
-        gerenciador.ordenarLancamentosPorData();
-        
-        System.out.println("Lançamentos:");
-        for (Lancamento lancamento : gerenciador.getLancamentos()) {
-            String categoria = lancamento instanceof Receita
-                    ? ((Receita) lancamento).getCategoria().toString()
-                    : ((Despesa) lancamento).getCategoria().toString();
+//        gerenciador.ordenarLancamentosPorData();
+//        
+//        System.out.println("Lançamentos:");
+//        for (Lancamento lancamento : gerenciador.getLancamentos()) {
+//            String categoria = lancamento instanceof Receita
+//                    ? ((Receita) lancamento).getCategoria().toString()
+//                    : ((Despesa) lancamento).getCategoria().toString();
+//
+//            System.out.println("Data: " + lancamento.getData().format(formatter) +
+//                    ", Valor: " + lancamento.getValor() +
+//                    ", Categoria: " + categoria +
+//                    ", Saldo: " + lancamento.getSaldo());
+//        }
 
-            System.out.println("Data: " + lancamento.getData().format(formatter) +
-                    ", Valor: " + lancamento.getValor() +
-                    ", Categoria: " + categoria +
-                    ", Saldo: " + lancamento.getSaldo());
-        }
+//        gerenciador.criarArquivo("C:\\Users\\João Pedro\\Documents\\Teste teste");
     }
 }
