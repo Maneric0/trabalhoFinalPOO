@@ -5,6 +5,7 @@
 package view;
 
 import java.io.File;
+import javax.swing.JButton;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -13,7 +14,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author João Pedro
  */
 public class TelaInicial extends javax.swing.JFrame {
-    public static String caminho;
+    public static String caminho; 
     /**
      * Creates new form TelaInicial
      */
@@ -41,6 +42,7 @@ public class TelaInicial extends javax.swing.JFrame {
         jBtnListarReceitas = new javax.swing.JButton();
         jTfProcurar = new javax.swing.JButton();
         jLErro = new javax.swing.JLabel();
+        jBtnCriarPlanilha = new javax.swing.JButton();
 
         jFileChooser1.setCurrentDirectory(new java.io.File("C:\\Users\\João Pedro\\Downloads"));
         jFileChooser1.setDialogTitle("");
@@ -60,6 +62,7 @@ public class TelaInicial extends javax.swing.JFrame {
         });
 
         jBtnIncluirDespesa.setText("Incluir Despesa");
+        jBtnIncluirDespesa.setEnabled(false);
         jBtnIncluirDespesa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnIncluirDespesaActionPerformed(evt);
@@ -67,6 +70,7 @@ public class TelaInicial extends javax.swing.JFrame {
         });
 
         jBtnIncluirReceita.setText("Incluir Receita");
+        jBtnIncluirReceita.setEnabled(false);
         jBtnIncluirReceita.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnIncluirReceitaActionPerformed(evt);
@@ -74,6 +78,7 @@ public class TelaInicial extends javax.swing.JFrame {
         });
 
         jBtnListarLancamentos.setText("Listar Lançamentos");
+        jBtnListarLancamentos.setEnabled(false);
         jBtnListarLancamentos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnListarLancamentosActionPerformed(evt);
@@ -81,6 +86,7 @@ public class TelaInicial extends javax.swing.JFrame {
         });
 
         jBtnListarDespesas.setText("Listar Despesas");
+        jBtnListarDespesas.setEnabled(false);
         jBtnListarDespesas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnListarDespesasActionPerformed(evt);
@@ -88,6 +94,7 @@ public class TelaInicial extends javax.swing.JFrame {
         });
 
         jBtnListarReceitas.setText("Listar Receitas");
+        jBtnListarReceitas.setEnabled(false);
         jBtnListarReceitas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnListarReceitasActionPerformed(evt);
@@ -102,6 +109,13 @@ public class TelaInicial extends javax.swing.JFrame {
         });
 
         jLErro.setForeground(new java.awt.Color(204, 0, 0));
+
+        jBtnCriarPlanilha.setText("Criar Planilha");
+        jBtnCriarPlanilha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnCriarPlanilhaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -124,7 +138,9 @@ public class TelaInicial extends javax.swing.JFrame {
                                     .addComponent(jBtnIncluirReceita, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jBtnListarReceitas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jBtnListarLancamentos))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jBtnListarLancamentos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jBtnCriarPlanilha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(4, 4, 4)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -154,7 +170,8 @@ public class TelaInicial extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtnIncluirDespesa)
-                    .addComponent(jBtnIncluirReceita))
+                    .addComponent(jBtnIncluirReceita)
+                    .addComponent(jBtnCriarPlanilha))
                 .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtnListarLancamentos)
@@ -168,7 +185,7 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void jBtnIncluirDespesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirDespesaActionPerformed
        IncluirDespesaUI telaIncluirDespesa = new IncluirDespesaUI(this, true);
-        telaIncluirDespesa.setVisible(true);
+       telaIncluirDespesa.setVisible(true);
     }//GEN-LAST:event_jBtnIncluirDespesaActionPerformed
 
     private void jBtnIncluirReceitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirReceitaActionPerformed
@@ -199,6 +216,11 @@ public class TelaInicial extends javax.swing.JFrame {
         telaListarLancamentos.setVisible(true);
     }//GEN-LAST:event_jBtnListarLancamentosActionPerformed
 
+    private void jBtnCriarPlanilhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCriarPlanilhaActionPerformed
+        CriarPlanilhaUI telaCriarPlanilha = new CriarPlanilhaUI(this, true);
+        telaCriarPlanilha.setVisible(rootPaneCheckingEnabled);
+    }//GEN-LAST:event_jBtnCriarPlanilhaActionPerformed
+
     public void setCaminho() {
         FileFilter filtro = new FileNameExtensionFilter("CSV", "csv");
         jFileChooser1.setFileFilter(filtro);
@@ -208,12 +230,20 @@ public class TelaInicial extends javax.swing.JFrame {
         caminho = file.getPath();
         
         jTfCaminho.setText(caminho);
+        verificarCaminho();
     }
     
     public void verificarCaminho() {
-        if (this.caminho.equals(null)) {
+        if (jTfCaminho.getText().equals("")) {
             jLErro.setText("Preencha o campo de caminho do arquivo");
+            return;
         }
+        
+        jBtnIncluirDespesa.setEnabled(true);
+        jBtnIncluirReceita.setEnabled(true);
+        jBtnListarDespesas.setEnabled(true);
+        jBtnListarReceitas.setEnabled(true);
+        jBtnListarLancamentos.setEnabled(true);
     } 
     /**
      * @param args the command line arguments
@@ -251,6 +281,7 @@ public class TelaInicial extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBtnCriarPlanilha;
     private javax.swing.JButton jBtnIncluirDespesa;
     private javax.swing.JButton jBtnIncluirReceita;
     private javax.swing.JButton jBtnListarDespesas;

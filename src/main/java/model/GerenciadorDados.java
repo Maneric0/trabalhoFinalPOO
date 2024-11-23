@@ -14,6 +14,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -121,7 +123,7 @@ public class GerenciadorDados {
             System.out.println("Erro ao ler o arquivo: " + e.getMessage());
         }
     }
-
+    
     public void ordenarLancamentosPorData() {
         getLancamentos().sort(new ComparadorPorData());
     }
