@@ -10,7 +10,7 @@ import java.time.LocalDate;
  *
  * @author Manerico
  */
-public class Lancamento implements Calculavel {
+public class Lancamento {
     
     private double valor;
     private LocalDate data;
@@ -19,10 +19,6 @@ public class Lancamento implements Calculavel {
     public Lancamento(double valor, LocalDate data){
         setValor(valor);
         setData(data);
-    }
-    
-    public double calcularSaldo() {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     /**
