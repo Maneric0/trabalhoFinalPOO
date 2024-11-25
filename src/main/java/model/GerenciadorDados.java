@@ -21,7 +21,7 @@ import java.util.logging.Logger;
  *
  * @author Manerico
  */
-public class GerenciadorDados {
+public class GerenciadorDados implements Arquivo{
     private File arquivo;
     private double saldo = 0.00;
     private List<Lancamento> lancamentos;

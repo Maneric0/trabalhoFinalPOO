@@ -18,11 +18,6 @@ public class Receita extends Lancamento {
         setCategoria(categoria);
     }
 
-    @Override
-    public double calcularSaldo() {
-        return this.getValor();
-    }   
-
     /**
      * @return the categoria
      */
