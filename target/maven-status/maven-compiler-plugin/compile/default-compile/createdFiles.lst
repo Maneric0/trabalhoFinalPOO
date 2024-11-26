@@ -20,7 +20,6 @@ model\Lancamento.class
 view\ListarReceitasUI$1.class
 view\IncluirDespesaUI.class
 model\Receita.class
-model\Calculavel.class
 model\ComparadorPorData.class
 view\ListarLancamentos$2.class
 view\TelaInicial$2.class
@@ -36,6 +35,7 @@ view\ListarLancamentos$3$1.class
 view\CriarPlanilhaUI$6$1.class
 view\ListarReceitasUI$2.class
 view\ListarDespesasUI.class
+model\Arquivo.class
 view\IncluirReceitaUI$3.class
 view\IncluirDespesaUI$2.class
 view\CriarPlanilhaUI$2.class
